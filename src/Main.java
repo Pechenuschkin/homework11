@@ -2,26 +2,30 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     // Task # 1
-    public static int getYear() {
-        return 2025;
-    }
-
-    // Task # 2
-    public static int getOperationSystem(String osName) {
-        if (osName.equals("iOS")) {
-            return 0;
-        } else if (osName.equals("Android")) {
-            return 1;
+    public static String checkingTheLeapYear(int year) {
+        if ((year >= 1584 && year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            return year + " год является високосным ";
+        } else if (year < 1584) {
+            return " Високосный год был введён в 1584 году ";
         } else {
-            return 2;
+            return year + " год не является високосным ";
         }
     }
 
-    public static int getTheDeviceYear(int clientDeviceYear) {
-        if (clientDeviceYear < 2015) {
-            return 0;
+    // Task # 2
+    public static String getOperationSystem(String osName, int clientDeviceYear) {
+        String operationSystem;
+        if (osName.equals("iOS")) {
+            operationSystem = "iOS";
+        } else if (osName.equals("Android")) {
+            operationSystem = "Android";
         } else {
-            return 1;
+            return " Такой операционной системы нет ";
+        }
+        if (clientDeviceYear < 2015) {
+            return " Установите облегченную версию приложения для " + operationSystem + " по ссылке ";
+        } else {
+            return " Установите версию приложения для " + operationSystem + " по ссылке ";
         }
     }
 
@@ -42,35 +46,16 @@ public class Main {
     public static void main(String[] args) {
         // Task # 1
         System.out.println(" Task # 1 ");
-        int year = getYear();
-        if ((year >= 1584 && year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-            System.out.println(year + " год является високосным ");
-        } else if (year < 1584) {
-            System.out.println(" Високосный год был введён в 1584 году ");
-        } else {
-            System.out.println(year + " год не является високосным ");
-        }
+        int year = 2025;
+        String yearOfRelease = checkingTheLeapYear(year);
+        System.out.println(yearOfRelease);
         // Task # 2
         System.out.println();
         System.out.println(" Task # 2 ");
         String osName = "iOS";
-        int clientOS = getOperationSystem(osName);
         int clientDeviceYear = 2017;
-        int getTheDeviceYear = getTheDeviceYear(clientDeviceYear);
-        String operationSystem;
-        if (clientOS == 0) {
-            operationSystem = "iOS";
-        } else if (clientOS == 1) {
-            operationSystem = "Android";
-        } else {
-            System.out.println(" Такой операционной системы нет ");
-            return;
-        }
-        if (getTheDeviceYear < 2015) {
-            System.out.println(" Установите облегченную версию приложения для " + operationSystem + " по ссылке ");
-        } else {
-            System.out.println(" Установите версию приложения для " + operationSystem + " по ссылке ");
-        }
+        String clientOS1 = getOperationSystem(osName, clientDeviceYear);
+        System.out.println(clientOS1);
         // Task # 3
         System.out.println();
         System.out.println(" Task # 3 ");
