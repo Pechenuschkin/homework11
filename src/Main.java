@@ -1,9 +1,11 @@
+import java.time.LocalDate;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     // Task # 1
     public static String checkingTheLeapYear(int year) {
-        if ((year >= 1584 && year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        if (year >= 1584 && (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)) {
             return year + " год является високосным ";
         } else if (year < 1584) {
             return " Високосный год был введён в 1584 году ";
@@ -30,16 +32,21 @@ public class Main {
     }
 
     // Task # 3
-    public static int getDeliveryDay(int deliveryDistance) {
-        int day = 1;
-        if (deliveryDistance > 0 && deliveryDistance < 20) {
-            return day;
+    public static String calculateDeliveryTime(int deliveryDistance) {
+        int day = 0;
+        if (deliveryDistance < 20) {
+            day++;
         } else if (deliveryDistance < 60) {
-            return day += 1;
+            day += 2;
         } else if (deliveryDistance <= 100) {
-            return day += 2;
+            day += 3;
         } else {
-            return 0;
+            day = 0;
+        }
+        if (day == 0) {
+            return " доставки нет ";
+        } else {
+            return "Потребуется дней:" + day;
         }
     }
 
@@ -53,18 +60,14 @@ public class Main {
         System.out.println();
         System.out.println(" Task # 2 ");
         String osName = "iOS";
-        int clientDeviceYear = 2017;
+        int clientDeviceYear = LocalDate.now().getYear();
         String clientOS1 = getOperationSystem(osName, clientDeviceYear);
         System.out.println(clientOS1);
         // Task # 3
         System.out.println();
         System.out.println(" Task # 3 ");
-        int deliveryDistance = 12;
-        int deliveryDay = getDeliveryDay(deliveryDistance);
-        if (deliveryDay == 0) {
-            System.out.println(" досавки нет ");
-        } else {
-            System.out.println("Потребуется дней:" + deliveryDay);
-        }
+        int deliveryDistance = 70;
+        String deliveryDay = calculateDeliveryTime(deliveryDistance);
+        System.out.println(deliveryDay);
     }
 }
