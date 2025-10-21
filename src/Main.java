@@ -15,19 +15,18 @@ public class Main {
     }
 
     // Task # 2
-    public static String getOperationSystem(String osName, int clientDeviceYear) {
-        String operationSystem;
-        if (osName.equals("iOS")) {
-            operationSystem = "iOS";
-        } else if (osName.equals("Android")) {
-            operationSystem = "Android";
+    public static String getOperationSystem(int osName, int clientDeviceYear) {
+        int currentYear = LocalDate.now().getYear();
+        if (osName == 0 && clientDeviceYear < currentYear) {
+            return "Установите облегченную версию приложения для iOS по ссылке";
+        } else if (osName == 0) {
+            return "Установите версию приложения для iOS по ссылке";
+        } else if (osName == 1 && clientDeviceYear < currentYear) {
+            return "Установите облегченную версию приложения для Android по ссылке";
+        } else if (osName == 1) {
+            return " Установите версию приложения для Android по ссылке ";
         } else {
             return " Такой операционной системы нет ";
-        }
-        if (clientDeviceYear < 2015) {
-            return " Установите облегченную версию приложения для " + operationSystem + " по ссылке ";
-        } else {
-            return " Установите версию приложения для " + operationSystem + " по ссылке ";
         }
     }
 
@@ -59,8 +58,8 @@ public class Main {
         // Task # 2
         System.out.println();
         System.out.println(" Task # 2 ");
-        String osName = "iOS";
-        int clientDeviceYear = LocalDate.now().getYear();
+        int osName = 1;
+        int clientDeviceYear = 2017;
         String clientOS1 = getOperationSystem(osName, clientDeviceYear);
         System.out.println(clientOS1);
         // Task # 3
